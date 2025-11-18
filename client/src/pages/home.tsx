@@ -10,7 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useMutation } from "@tanstack/react-query";
-import { Menu, X, ArrowRight, Quote, Users, Phone } from "lucide-react";
+import { Menu, X, ArrowRight, Quote, Users, MapPin, Phone, Mail, Linkedin, Twitter } from "lucide-react";
 import oxfordSkylineImg from "@assets/Website Hero Image_1757322430079.jpg";
 import benSchubertImg from "@/assets/ben-schubert.jpg";
 import kittyMcWilliamImg from "@/assets/kitty-mcwilliam.jpg";
@@ -460,8 +460,48 @@ export default function Home() {
 
       {/* Footer */}
       <footer id="contact" className="py-16 bg-muted/30 border-t border-border">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <div>
+              <h3 className="text-2xl font-serif font-semibold text-primary mb-6" data-testid="text-contact-title">Get in Touch</h3>
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <Mail className="text-secondary mr-3 w-5 h-5" />
+                  <span className="text-muted-foreground" data-testid="text-contact-email">info@oxfordcoachingpartnership.com</span>
+                </div>
+                <div className="flex items-center">
+                  <MapPin className="text-secondary mr-3 w-5 h-5" />
+                  <span className="text-muted-foreground" data-testid="text-contact-location">Oxford, United Kingdom</span>
+                </div>
+              </div>
+              
+              {/* Social Icons */}
+              <div className="flex space-x-4 mt-8">
+                <a 
+                  href="#" 
+                  className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-colors"
+                  data-testid="link-linkedin"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a 
+                  href="#" 
+                  className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-colors"
+                  data-testid="link-twitter"
+                >
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a 
+                  href="#" 
+                  className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-colors"
+                  data-testid="link-email"
+                >
+                  <Mail className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+            
             {/* Enquiry Form */}
             <div>
               <h3 className="text-2xl font-serif font-semibold text-primary mb-6" data-testid="text-form-title">Send us a Message</h3>
