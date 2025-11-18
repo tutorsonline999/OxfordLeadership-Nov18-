@@ -1,69 +1,14 @@
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
-import { useMutation } from "@tanstack/react-query";
-import { Menu, X, ArrowRight, Quote, Users, MapPin, Phone, Mail, Linkedin, Twitter } from "lucide-react";
+import { Menu, X, ArrowRight, Quote, Users, MapPin, Mail, Linkedin, Twitter } from "lucide-react";
 import oxfordSkylineImg from "@assets/Website Hero Image_1757322430079.jpg";
 import benSchubertImg from "@/assets/ben-schubert.jpg";
 import kittyMcWilliamImg from "@/assets/kitty-mcwilliam.jpg";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
-const contactFormSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().optional(),
-  message: z.string().min(10, "Please provide more details about your coaching needs"),
-});
-
-type ContactFormData = z.infer<typeof contactFormSchema>;
-
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { toast } = useToast();
-
-  const form = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      message: "",
-    },
-  });
-
-  const contactMutation = useMutation({
-    mutationFn: async (data: ContactFormData) => {
-      return apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      form.reset();
-    },
-    onError: () => {
-      toast({
-        title: "Failed to send message",
-        description: "Please try again or contact us directly.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const onSubmit = (data: ContactFormData) => {
-    contactMutation.mutate(data);
-  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -461,7 +406,7 @@ export default function Home() {
       {/* Footer */}
       <footer id="contact" className="py-16 bg-muted/30 border-t border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="max-w-xl mx-auto">
             {/* Contact Information */}
             <div>
               <h3 className="text-2xl font-serif font-semibold text-primary mb-6" data-testid="text-contact-title">Get in Touch</h3>
@@ -500,109 +445,6 @@ export default function Home() {
                   <Mail className="w-5 h-5" />
                 </a>
               </div>
-            </div>
-            
-            {/* Enquiry Form */}
-            <div>
-              <h3 className="text-2xl font-serif font-semibold text-primary mb-6" data-testid="text-form-title">Send us a Message</h3>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" data-testid="form-contact">
-                  <div className="grid grid-cols-2 gap-4">
-                    <FormField
-                      control={form.control}
-                      name="firstName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <Input 
-                              placeholder="First Name" 
-                              {...field}
-                              data-testid="input-first-name"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="lastName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                            <Input 
-                              placeholder="Last Name" 
-                              {...field}
-                              data-testid="input-last-name"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input 
-                            type="email"
-                            placeholder="Email Address" 
-                            {...field}
-                            data-testid="input-email"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input 
-                            type="tel"
-                            placeholder="Phone Number (optional)" 
-                            {...field}
-                            data-testid="input-phone"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Textarea 
-                            placeholder="Tell us about your coaching needs..." 
-                            rows={4}
-                            className="resize-none"
-                            {...field}
-                            data-testid="input-message"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3"
-                    disabled={contactMutation.isPending}
-                    data-testid="button-send-message"
-                  >
-                    {contactMutation.isPending ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
-              </Form>
             </div>
           </div>
           
