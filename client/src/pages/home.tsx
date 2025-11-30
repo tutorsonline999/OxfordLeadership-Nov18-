@@ -404,43 +404,47 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="py-16 bg-muted/30 border-t border-border">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-xl mx-auto">
-            {/* Contact Information */}
-            <div>
-              <h3 className="text-2xl font-serif font-semibold text-primary mb-6" data-testid="text-contact-title">Get in Touch</h3>
-              <div className="space-y-4">
-                <div className="flex items-center">
-                  <Mail className="text-secondary mr-3 w-5 h-5" />
-                  <span className="text-muted-foreground" data-testid="text-contact-email">info@oxfordcoachingpartnership.com</span>
-                </div>
-                <div className="flex items-center">
-                  <MapPin className="text-secondary mr-3 w-5 h-5" />
-                  <span className="text-muted-foreground" data-testid="text-contact-location">Oxford, United Kingdom</span>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-          {/* Footer Bottom */}
-          <div className="border-t border-border mt-12 pt-8 text-center">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-muted-foreground" data-testid="text-copyright">
-                © 2025 The Oxford Coaching Partnership. All rights reserved.
-              </p>
-              <div className="flex space-x-6">
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-privacy">
-                  Privacy Policy
-                </a>
-                <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-terms">
-                  Information provided on this website is general and not professional advice.
-                </a>
-              </div>
-            </div>
-          </div>
+    <footer id="contact" className="py-16 bg-muted/30 border-t border-border">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-xl mx-auto">
+      {/* Contact Information */}
+      <h3 className="text-2xl font-serif font-semibold text-primary mb-6" data-testid="text-contact-title">
+        Get in Touch
+      </h3>
+      <div className="space-y-4">
+        <div className="flex items-center">
+          <Mail className="text-secondary mr-3 w-5 h-5" />
+          <span className="text-muted-foreground" data-testid="text-contact-email">
+            info@oxfordcoachingpartnership.com
+          </span>
         </div>
-      </footer>
+        <div className="flex items-center">
+          <MapPin className="text-secondary mr-3 w-5 h-5" />
+          <span className="text-muted-foreground" data-testid="text-contact-location">
+            Oxford, United Kingdom
+          </span>
+        </div>
+      </div>
+    </div>
+
+    {/* Footer Bottom */}
+    <div className="border-t border-border mt-12 pt-8 text-center">
+      <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <p className="text-muted-foreground" data-testid="text-copyright">
+          © 2025 The Oxford Coaching Partnership. All rights reserved.
+        </p>
+        <div className="flex space-x-6">
+          <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-privacy">
+            Privacy Policy
+          </a>
+          <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-terms">
+            Information provided on this website is general and not professional advice.
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
     </div>
   );
 }
