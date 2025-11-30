@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Menu, X, ArrowRight, Quote, Users, MapPin, Mail, Linkedin, Twitter } from "lucide-react";
-import oxfordSkylineImg from "@assets/Website Hero Image_1757322430079.jpg";
+import { Menu, X, ArrowRight, Quote, Users, MapPin, Mail } from "lucide-react";
+import oxfordSkylineImg from "@/assets/Website Hero Image_1757322430079.jpg";
 import benSchubertImg from "@/assets/ben-schubert.jpg";
 import kittyMcWilliamImg from "@/assets/kitty-mcwilliam.jpg";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
@@ -16,7 +16,7 @@ export default function Home() {
       const offsetTop = element.offsetTop - 80;
       window.scrollTo({
         top: offsetTop,
-        behavior: 'smooth'
+        behavior: "smooth"
       });
     }
     setIsMenuOpen(false);
@@ -24,99 +24,63 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const navbar = document.querySelector('nav');
+      const navbar = document.querySelector("nav");
       if (navbar) {
         if (window.scrollY > 50) {
-          navbar.classList.add('backdrop-blur-md');
+          navbar.classList.add("backdrop-blur-md");
         } else {
-          navbar.classList.remove('backdrop-blur-md');
+          navbar.classList.remove("backdrop-blur-md");
         }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans antialiased decorative-pattern">
+      
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-border z-50">
         <div className="w-full px-0">
           <div className="flex justify-between items-center py-4">
             <div className="flex-shrink-0 pl-2">
-              <h1 className="text-lg font-semibold text-primary text-left" style={{ fontFamily: 'Montserrat, sans-serif' }}>The Oxford Coaching Partnership</h1>
+              <h1
+                className="text-lg font-semibold text-primary text-left"
+                style={{ fontFamily: "Montserrat, sans-serif" }}
+              >
+                The Oxford Coaching Partnership
+              </h1>
             </div>
             <div className="hidden md:flex space-x-8">
-              <button 
-                onClick={() => scrollToSection('about')} 
-                className="text-foreground hover:text-primary transition-colors"
-                data-testid="nav-about"
-              >
+              <button onClick={() => scrollToSection("about")} className="text-foreground hover:text-primary transition-colors">
                 About
               </button>
-              <button 
-                onClick={() => scrollToSection('services')} 
-                className="text-foreground hover:text-primary transition-colors"
-                data-testid="nav-services"
-              >
+              <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">
                 Services
               </button>
-              <button 
-                onClick={() => scrollToSection('testimonials')} 
-                className="text-foreground hover:text-primary transition-colors"
-                data-testid="nav-testimonials"
-              >
+              <button onClick={() => scrollToSection("testimonials")} className="text-foreground hover:text-primary transition-colors">
                 Testimonials
               </button>
-              <button 
-                onClick={() => scrollToSection('contact')} 
-                className="text-foreground hover:text-primary transition-colors"
-                data-testid="nav-contact"
-              >
-                Contact
-              </button>
             </div>
-            <button 
-              className="md:hidden p-2" 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              data-testid="button-mobile-menu"
-            >
+            <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X className="text-primary" /> : <Menu className="text-primary" />}
             </button>
           </div>
-          
-          {/* Mobile Menu */}
+
+          {/* Mobile */}
           {isMenuOpen && (
             <div className="md:hidden pb-4">
               <div className="flex flex-col space-y-2">
-                <button 
-                  onClick={() => scrollToSection('about')} 
-                  className="text-left text-foreground hover:text-primary transition-colors py-2"
-                  data-testid="nav-mobile-about"
-                >
+                <button onClick={() => scrollToSection("about")} className="text-left text-foreground hover:text-primary py-2">
                   About
                 </button>
-                <button 
-                  onClick={() => scrollToSection('services')} 
-                  className="text-left text-foreground hover:text-primary transition-colors py-2"
-                  data-testid="nav-mobile-services"
-                >
+                <button onClick={() => scrollToSection("services")} className="text-left text-foreground hover:text-primary py-2">
                   Services
                 </button>
-                <button 
-                  onClick={() => scrollToSection('testimonials')} 
-                  className="text-left text-foreground hover:text-primary transition-colors py-2"
-                  data-testid="nav-mobile-testimonials"
-                >
+                <button onClick={() => scrollToSection("testimonials")} className="text-left text-foreground hover:text-primary py-2">
                   Testimonials
-                </button>
-                <button 
-                  onClick={() => scrollToSection('contact')} 
-                  className="text-left text-foreground hover:text-primary transition-colors py-2"
-                  data-testid="nav-mobile-contact"
-                >
-                  Contact
                 </button>
               </div>
             </div>
@@ -124,21 +88,18 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Banner */}
-      <section className="relative h-[420px] md:h-[550px] lg:h-[600px] flex items-center justify-center text-center -mt-20 bg-background">
-        <div 
-          className="absolute inset-0 bg-contain bg-center bg-no-repeat border-b-4 border-amber-500" 
-          style={{
-            backgroundImage: `url(${oxfordSkylineImg})`
-          }}
+      {/* Hero */}
+      <section className="relative h-[420px] md:h-[550px] lg:h-[600px] flex items-center justify-center text-center -mt-20">
+        <div
+          className="absolute inset-0 bg-contain bg-center bg-no-repeat border-b-4 border-amber-500"
+          style={{ backgroundImage: `url(${oxfordSkylineImg})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent from-80% via-background/5 via-92% via-background/20 via-96% to-background"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-blue-100/30 via-blue-50/50 to-white"></div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 text-balance text-center" data-testid="text-hero-title">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4">
+          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6">
             The Oxford <span className="text-white">Coaching</span> Partnership
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed" data-testid="text-hero-tagline">
+          <p className="text-lg md:text-xl text-white/90">
             EMPOWERING PEOPLE TO LEAD WITH CLARITY, CONFIDENCE, AND PURPOSE.
           </p>
         </div>
@@ -146,238 +107,230 @@ export default function Home() {
 
       {/* Who We Are */}
       <section id="about" className="pt-2 pb-20 bg-background fleur-pattern-bg">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-block border-2 border-light-gold px-8 py-4 mb-6">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary m-0" data-testid="text-about-title">Who We Are</h2>
+              <h2 className="text-4xl font-serif font-bold text-primary">Who We Are</h2>
             </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" data-testid="text-about-description">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               We are a team that specialises in coaching, mentoring, and organisational development.
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-            {/* Dr Ben Schubert */}
-            <Card className="hover:shadow-lg transition-shadow" data-testid="card-coach-ben">
+
+          <div className="grid md:grid-cols-2 gap-12">
+            
+            {/* Ben */}
+            <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-8">
-                <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden bg-muted border-4 border-accent">
-                  <img 
-                    src={benSchubertImg} 
-                    alt="Dr Ben Schubert" 
-                    className="w-full h-full object-cover"
-                    data-testid="img-coach-ben"
-                  />
+                <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-accent">
+                  <img src={benSchubertImg} alt="Dr Ben Schubert" className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-2xl font-serif font-semibold text-primary mb-4 text-center" data-testid="text-coach-ben-name">
+                <h3 className="text-2xl font-serif font-semibold text-primary text-center mb-4">
                   Dr Ben Schubert
                 </h3>
-                <p className="text-muted-foreground leading-relaxed mb-6" data-testid="text-coach-ben-bio">
-                  I believe everyone deserves to be successful and fulfilled in their work. I work with leaders at pivotal moments in their professional lives, whether they are navigating career transitions, managing complex organisational challenges, or seeking alignment between their career and personal life. Through coaching, I help my clients unlock clarity, resilience, and direction.
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  I believe everyone deserves to be successful and fulfilled in their work. I work with leaders at pivotal moments in their professional lives...
                 </p>
                 <div className="text-center">
-                  <button className="text-primary hover:text-secondary font-medium transition-colors border-b border-transparent hover:border-primary inline-flex items-center gap-1" data-testid="button-ben-profile">
+                  <button className="text-primary hover:text-secondary font-medium inline-flex items-center gap-1">
                     See the full coaching profile here <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </CardContent>
             </Card>
-            
-            {/* Kitty McWilliam */}
-            <Card className="hover:shadow-lg transition-shadow" data-testid="card-coach-kitty">
+
+            {/* Kitty */}
+            <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-8">
-                <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden bg-muted border-4 border-accent">
-                  <img 
-                    src={kittyMcWilliamImg} 
-                    alt="Kitty McWilliam" 
-                    className="w-full h-full object-cover object-[center_90%]"
-                    data-testid="img-coach-kitty"
-                  />
+                <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-accent">
+                  <img src={kittyMcWilliamImg} alt="Kitty McWilliam" className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-2xl font-serif font-semibold text-primary mb-4 text-center" data-testid="text-coach-kitty-name">
+                <h3 className="text-2xl font-serif font-semibold text-primary text-center mb-4">
                   Kitty McWilliam
                 </h3>
-                <p className="text-muted-foreground leading-relaxed mb-6" data-testid="text-coach-kitty-bio">
-                  I combine experience from diverse sectors, including higher education, healthcare, and global business, with a passion for enabling people to flourish. I believe that when people feel supported and empowered, they not only grow as individuals but also strengthen the teams and organisations around them.
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  I combine experience from diverse sectors, including higher education, healthcare, and global business...
                 </p>
                 <div className="text-center">
-                  <button className="text-primary hover:text-secondary font-medium transition-colors border-b border-transparent hover:border-primary inline-flex items-center gap-1" data-testid="button-kitty-profile">
+                  <button className="text-primary hover:text-secondary font-medium inline-flex items-center gap-1">
                     See the full coaching profile here <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </CardContent>
             </Card>
+
           </div>
         </div>
       </section>
 
-      {/* What We Offer */}
+      {/* Services */}
       <section id="services" className="py-20 bg-cream-blue services-pattern">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-block border-2 border-light-gold px-8 py-4 mb-6">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary m-0" data-testid="text-services-title">What We Offer</h2>
+              <h2 className="text-4xl font-serif font-bold text-primary">What We Offer</h2>
             </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" data-testid="text-services-description">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Comprehensive coaching solutions tailored to your leadership journey
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {/* Executive Coaching */}
-            <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1" data-testid="card-service-executive">
+            
+            {/* Executive */}
+            <Card className="hover:shadow-lg transition-all hover:-translate-y-1">
               <CardContent className="p-8">
                 <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
                   <Users className="text-2xl text-primary w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-serif font-semibold text-primary mb-4" data-testid="text-service-executive-title">
+                <h3 className="text-2xl font-serif font-semibold text-primary mb-4">
                   Executive Coaching
                 </h3>
-                <p className="text-muted-foreground leading-relaxed" data-testid="text-service-executive-description">
-                  We offer online as well as in-person coaching for executives at all levels to help them master the challenges in their professional personal lives.
+                <p className="text-muted-foreground leading-relaxed">
+                  We offer online as well as in-person coaching...
                 </p>
               </CardContent>
             </Card>
-            
-            {/* Walking Coaching */}
-            <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1" data-testid="card-service-walking">
+
+            {/* Walking */}
+            <Card className="hover:shadow-lg transition-all hover:-translate-y-1">
               <CardContent className="p-8">
                 <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-secondary" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L5 8.3V13h2V9.6l1.8-.7"/>
+                    <path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z..." />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-serif font-semibold text-primary mb-4" data-testid="text-service-walking-title">
+                <h3 className="text-2xl font-serif font-semibold text-primary mb-4">
                   Walking Coaching
                 </h3>
-                <p className="text-muted-foreground leading-relaxed" data-testid="text-service-walking-description">
-                  Some people think better when they are walking and talking. There is something to be said about moving together in the same direction.
+                <p className="text-muted-foreground leading-relaxed">
+                  Some people think better when they are walking and talking...
                 </p>
               </CardContent>
             </Card>
-            
-            {/* Training and Facilitation */}
-            <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1" data-testid="card-service-training">
+
+            {/* Training */}
+            <Card className="hover:shadow-lg transition-all hover:-translate-y-1">
               <CardContent className="p-8">
                 <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <path d="M17 20h5v-2a3 3 0 00-5.356-1.857..." />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-serif font-semibold text-primary mb-4" data-testid="text-service-training-title">
+                <h3 className="text-2xl font-serif font-semibold text-primary mb-4">
                   Training and Facilitation
                 </h3>
-                <p className="text-muted-foreground leading-relaxed" data-testid="text-service-training-description">
-                  We design and deliver workshops and programmes tailored to the needs of organisations, teams, and individuals.
+                <p className="text-muted-foreground leading-relaxed">
+                  We design and deliver workshops and programmes...
                 </p>
               </CardContent>
             </Card>
-            
-            {/* Interview Coaching */}
-            <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1" data-testid="card-service-interview">
+
+            {/* Interview */}
+            <Card className="hover:shadow-lg transition-all hover:-translate-y-1">
               <CardContent className="p-8">
                 <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
                   <svg className="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    <path d="M8 12h.01M12 12h.01M16 12h.01..." />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-serif font-semibold text-primary mb-4" data-testid="text-service-interview-title">
+                <h3 className="text-2xl font-serif font-semibold text-primary mb-4">
                   Interview Coaching
                 </h3>
-                <p className="text-muted-foreground leading-relaxed" data-testid="text-service-interview-description">
-                  We offer expert coaching to support every step of your job application journey, from writing applications to interview preparation.
+                <p className="text-muted-foreground leading-relaxed">
+                  We offer expert coaching to support every step...
                 </p>
               </CardContent>
             </Card>
+
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
       <section id="testimonials" className="py-20 bg-background testimonials-pattern">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-block border-2 border-light-gold px-8 py-4 mb-6">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary m-0" data-testid="text-testimonials-title">What Our Clients Say</h2>
+              <h2 className="text-4xl font-serif font-bold text-primary">What Our Clients Say</h2>
             </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" data-testid="text-testimonials-description">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Transformative coaching experiences that drive real results
             </p>
           </div>
-          
+
           <div className="max-w-4xl mx-auto">
             <Carousel className="w-full">
               <CarouselContent>
-                {/* Testimonial 1 */}
+
                 <CarouselItem>
-                  <Card data-testid="card-testimonial-1">
+                  <Card>
                     <CardContent className="p-8">
                       <div className="mb-6">
-                        <Quote className="text-3xl text-secondary mb-4 w-8 h-8" />
-                        <p className="text-muted-foreground leading-relaxed italic text-lg" data-testid="text-testimonial-1-quote">
-                          "They supported me through a tough job search, helping me clarify career goals, explore options, and gain insights. The flexibility and guidance were invaluable. I would certainly recommend."
+                        <Quote className="text-3xl text-secondary mb-4" />
+                        <p className="italic text-lg text-muted-foreground">
+                          "They supported me through a tough job search..."
                         </p>
                       </div>
                       <div className="text-center">
-                        <p className="font-semibold text-foreground" data-testid="text-testimonial-1-name">L&D Manager</p>
-                        <p className="text-sm text-muted-foreground" data-testid="text-testimonial-1-title">Football Association</p>
+                        <p className="font-semibold">L&D Manager</p>
+                        <p className="text-sm text-muted-foreground">Football Association</p>
                       </div>
                     </CardContent>
                   </Card>
                 </CarouselItem>
-                
-                {/* Testimonial 2 */}
+
                 <CarouselItem>
-                  <Card data-testid="card-testimonial-2">
+                  <Card>
                     <CardContent className="p-8">
                       <div className="mb-6">
-                        <Quote className="text-3xl text-secondary mb-4 w-8 h-8" />
-                        <p className="text-muted-foreground leading-relaxed italic text-lg" data-testid="text-testimonial-2-quote">
-                          "The coaching gave me the chance to step back and align my career with what I value most. That perspective has been invaluable, and I now feel much clearer about how I want to move forward."
+                        <Quote className="text-3xl text-secondary mb-4" />
+                        <p className="italic text-lg text-muted-foreground">
+                          "The coaching gave me the chance to step back..."
                         </p>
                       </div>
                       <div className="text-center">
-                        <p className="font-semibold text-foreground" data-testid="text-testimonial-2-name">Global Leader</p>
-                        <p className="text-sm text-muted-foreground" data-testid="text-testimonial-2-title">Deloitte</p>
+                        <p className="font-semibold">Global Leader</p>
+                        <p className="text-sm text-muted-foreground">Deloitte</p>
                       </div>
                     </CardContent>
                   </Card>
                 </CarouselItem>
-                
-                {/* Testimonial 3 */}
+
                 <CarouselItem>
-                  <Card data-testid="card-testimonial-3">
+                  <Card>
                     <CardContent className="p-8">
                       <div className="mb-6">
-                        <Quote className="text-3xl text-secondary mb-4 w-8 h-8" />
-                        <p className="text-muted-foreground leading-relaxed italic text-lg" data-testid="text-testimonial-3-quote">
-                          "What stood out was the ability to cut through complex challenges and offer a new perspective on thorny issues. The combination of sharp business insight and genuine people understanding made the coaching experience extremely valuable. I'd strongly endorse it to fellow leaders."
+                        <Quote className="text-3xl text-secondary mb-4" />
+                        <p className="italic text-lg text-muted-foreground">
+                          "What stood out was the ability to cut through complex challenges..."
                         </p>
                       </div>
                       <div className="text-center">
-                        <p className="font-semibold text-foreground" data-testid="text-testimonial-3-name">CEO</p>
-                        <p className="text-sm text-muted-foreground" data-testid="text-testimonial-3-title">UK Startup</p>
+                        <p className="font-semibold">CEO</p>
+                        <p className="text-sm text-muted-foreground">UK Startup</p>
                       </div>
                     </CardContent>
                   </Card>
                 </CarouselItem>
-                
-                {/* Testimonial 4 */}
+
                 <CarouselItem>
-                  <Card data-testid="card-testimonial-4">
+                  <Card>
                     <CardContent className="p-8">
                       <div className="mb-6">
-                        <Quote className="text-3xl text-secondary mb-4 w-8 h-8" />
-                        <p className="text-muted-foreground leading-relaxed italic text-lg" data-testid="text-testimonial-4-quote">
-                          "From the start, the workshop design felt bespoke to our needs, giving us confidence we were in good hands. The careful preparation made the session engaging, effective, and successful."
+                        <Quote className="text-3xl text-secondary mb-4" />
+                        <p className="italic text-lg text-muted-foreground">
+                          "From the start, the workshop design felt bespoke..."
                         </p>
                       </div>
                       <div className="text-center">
-                        <p className="font-semibold text-foreground" data-testid="text-testimonial-4-name">Head of Department</p>
-                        <p className="text-sm text-muted-foreground" data-testid="text-testimonial-4-title">University of Oxford</p>
+                        <p className="font-semibold">Head of Department</p>
+                        <p className="text-sm text-muted-foreground">University of Oxford</p>
                       </div>
                     </CardContent>
                   </Card>
                 </CarouselItem>
+
               </CarouselContent>
               <CarouselPrevious />
               <CarouselNext />
@@ -386,65 +339,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How to Work With Us */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6" data-testid="text-work-with-us-title">How to Work With Us</h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed" data-testid="text-work-with-us-description">
-            Contact Ben or Kitty to arrange a free and confidential discovery session to discuss how we might work together.
-          </p>
-          <Button 
-            className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-8 py-4 text-lg shadow-lg"
-            onClick={() => scrollToSection('contact')}
-            data-testid="button-contact-us"
-          >
-            Contact Us
-          </Button>
-        </div>
-      </section>
-
       {/* Footer */}
-    <footer id="contact" className="py-16 bg-muted/30 border-t border-border">
-  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="max-w-xl mx-auto">
-      {/* Contact Information */}
-      <h3 className="text-2xl font-serif font-semibold text-primary mb-6" data-testid="text-contact-title">
-        Get in Touch
-      </h3>
-      <div className="space-y-4">
-        <div className="flex items-center">
-          <Mail className="text-secondary mr-3 w-5 h-5" />
-          <span className="text-muted-foreground" data-testid="text-contact-email">
-            info@oxfordcoachingpartnership.com
-          </span>
-        </div>
-        <div className="flex items-center">
-          <MapPin className="text-secondary mr-3 w-5 h-5" />
-          <span className="text-muted-foreground" data-testid="text-contact-location">
-            Oxford, United Kingdom
-          </span>
-        </div>
-      </div>
-    </div>
+      <footer className="py-16 bg-muted/30 border-t border-border">
+        <div className="max-w-6xl mx-auto px-4">
 
-    {/* Footer Bottom */}
-    <div className="border-t border-border mt-12 pt-8 text-center">
-      <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <p className="text-muted-foreground" data-testid="text-copyright">
-          © 2025 The Oxford Coaching Partnership. All rights reserved.
-        </p>
-        <div className="flex space-x-6">
-          <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-privacy">
-            Privacy Policy
-          </a>
-          <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-terms">
-            Information provided on this website is general and not professional advice.
-          </a>
+          <div className="max-w-xl mx-auto">
+            <h3 className="text-2xl font-serif font-semibold text-primary mb-6">
+              Get in Touch
+            </h3>
+            <div className="space-y-4">
+              <div className="flex items-center">
+                <Mail className="text-secondary mr-3 w-5 h-5" />
+                <span className="text-muted-foreground">
+                  info@oxfordcoachingpartnership.com
+                </span>
+              </div>
+              <div className="flex items-center">
+                <MapPin className="text-secondary mr-3 w-5 h-5" />
+                <span className="text-muted-foreground">
+                  Oxford, United Kingdom
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-border mt-12 pt-8 text-center">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <p className="text-muted-foreground">
+                © 2025 The Oxford Coaching Partnership. All rights reserved.
+              </p>
+              <div className="flex space-x-6">
+                <a className="text-muted-foreground hover:text-primary transition-colors">
+                  Privacy Policy
+                </a>
+                <span className="text-muted-foreground hover:text-primary transition-colors">
+                  Information provided on this website is general and not professional advice.
+                </span>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </div>
-    </div>
-  </div>
-</footer>
+      </footer>
+
     </div>
   );
 }
