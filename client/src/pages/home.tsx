@@ -284,7 +284,7 @@ export default function Home() {
                   Interview Coaching
                 </h3>
                 <p className="text-muted-foreground leading-relaxed" data-testid="text-service-interview-description">
-                  We offer expert coaching to support every step of your job application journey, from writing applications to interview preparation. Through tailored feedback and a clear development plan, we help you build confidence, improve performance, and close the gap between where you are now and where you want to be.
+                  We offer expert coaching to support every step of your job application journey, from writing applications to interview preparation.
                 </p>
               </CardContent>
             </Card>
