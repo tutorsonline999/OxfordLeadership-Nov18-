@@ -338,7 +338,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="py-16 bg-muted/30 border-t border-border">
         <div className="max-w-6xl mx-auto px-4">
@@ -381,7 +380,3 @@ export default function Home() {
 
         </div>
       </footer>
-
-    </div>
-  );
-}
